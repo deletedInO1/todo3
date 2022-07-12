@@ -1,0 +1,25 @@
+body {
+    background-color:black;
+}
+.taskdiv {
+    display: -webkit-flex;display:flex;
+    margin-bottom: 10px;
+}
+.check {
+    width: 20%;
+    padding-bottom: 20%;
+    background-color: red;
+    margin-right: 10%;
+}
+.taskname {
+    color: white;
+    font-size: large;
+    width: 70%;
+}
+#inp {
+    font-size:large;
+    width:90%;
+}
+#inpbutton {
+    width:90%;
+}

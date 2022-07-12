@@ -1,0 +1,3 @@
+install nginx
+set location in /etc/nginx/available-sites/default
+start nginx
