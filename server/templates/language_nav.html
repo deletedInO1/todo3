@@ -8,8 +8,12 @@
     <link rel="stylesheet" href="__style.css">
 </head>
 <body>
-    <a class="link" href="/checklist"> Checkliste</a>
-    <a class="link" href="/language"> Sprachen</a>
-
+    {% for el in elements %}
+    <a class="link" href="/language/{{path}}{{el}}">{{el}}</a>
+    {% endfor %}
 </body>
+<!--script>
+    let x = {{my_param}};
+    window.alert(x);
+</script-->
 </html>
