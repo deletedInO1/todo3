@@ -2,6 +2,7 @@ tasks = [];
 var day = new Date().getDay();
 color1 = "red";
 color2 = "green";
+var myBody = document.getElementById("content")
 function generateTask(text){
     let t = document.createElement("div");
     t.classList.add("taskdiv");
@@ -14,10 +15,10 @@ function generateTask(text){
     s.innerHTML = text;
     t.appendChild(s);
     r = document.createElement("button");
-    r.addEventListener("click", onRemove(text, t))
+    r.addEventListener("click", onRemove(text, t));
     r.innerHTML = "löschen";
     t.appendChild(r);
-    document.body.appendChild(t);
+    myBody.appendChild(t);
 }
 function onCheck(event){
     let style = event.target.style
@@ -28,13 +29,13 @@ function onCheck(event){
     }
 }
 function generate(){
-    while(document.body.firstChild){
-        document.body.firstChild.remove();
+    while(myBody.firstChild){
+        myBody.firstChild.remove();
     }
     i = document.createElement("input");
     //i.value = "wadjiw"
     i.id = "inp";
-    document.body.appendChild(i);
+    myBody.appendChild(i);
     b = document.createElement("button");
     b.id = "inpbutton";
     b.innerHTML = "add";
@@ -43,7 +44,7 @@ function generate(){
         tasks.push(t);
         generateTask(t);
     })
-    document.body.appendChild(b);
+    myBody.appendChild(b);
     for(var t in tasks){
         generateTask(tasks[t]);
     }

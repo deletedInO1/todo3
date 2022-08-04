@@ -1,8 +1,9 @@
 #top {
-    position: fixed;
+    position: static;
     width: 100%;
     background-color: rgb(39, 156, 202);
     margin: 0px;
+
 }
 #top h1 {
     font-family: sans-serif;
