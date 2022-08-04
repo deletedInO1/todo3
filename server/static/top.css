@@ -1,0 +1,24 @@
+#top {
+    position: fixed;
+    width: 100%;
+    background-color: rgb(39, 156, 202);
+    margin: 0px;
+}
+#top h1 {
+    font-family: sans-serif;
+    text-align: center;
+    font-style: italic;
+}
+#linkrow {
+    background-color: rgb(11, 57, 84);
+    width: 100%;
+    font-size: x-large;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 2%;
+    padding-bottom: 1%;
+    }
+#linkrow a {
+    text-align: center;
+    
+}
