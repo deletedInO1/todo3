@@ -1,17 +1,15 @@
 
 from flask import Flask, render_template
 from html_formatting import render_formatted_template
-import language
+import language, checklist
 app = Flask(__name__)
 
 
 @app.route("/")
 def index():
     return render_formatted_template("index.html")
-@app.route("/checklist")
-def checklist():
-    return render_formatted_template("checklist.html")
 language.append(app)
+checklist.append(app)
 
 
 if __name__ == "__main__":

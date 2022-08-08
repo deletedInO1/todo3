@@ -4,6 +4,7 @@ color1 = "red";
 color2 = "green";
 var myBody = document.getElementById("content")
 function generateTask(text){
+    tasks.push(text);
     let t = document.createElement("div");
     t.classList.add("taskdiv");
     let c = document.createElement("div");
@@ -28,7 +29,8 @@ function onCheck(event){
         style.backgroundColor = color2;
     }
 }
-function generate(){
+function generate(mytasks){
+    tasks = mytasks;
     while(myBody.firstChild){
         myBody.firstChild.remove();
     }
@@ -41,8 +43,14 @@ function generate(){
     b.innerHTML = "add";
     b.addEventListener("click", () => {
         t = document.getElementById("inp").value;
-        tasks.push(t);
-        generateTask(t);
+        fetch(window.location.href, {
+            method: "POST",
+            body: JSON.stringify({
+                id: tasks.length-1,
+                action: "create",
+                name: t
+            })
+        });
     })
     myBody.appendChild(b);
     for(var t in tasks){
@@ -53,13 +61,32 @@ setInterval(() => {
     var day2 = new Date().getDay();
     if(day != day2){
         day = day2;
+        fetch("/checklist", {
+            method: "POST",
+            body: JSON.stringify({
+                id: 0,
+                action: "reset"
+            })
+        });
     }
+    
 }, 1000*60*60);
+function removeTask(task, div) {
+    let id = tasks.indexOf(task);
+    fetch("/checklist", {
+        method: "POST",
+        body: JSON.stringify({
+            id: id,
+            action: "remove"
+        })
+    });
+    //tasks = tasks.filter(x => x != task);
+    //div.remove();
+}
 function onRemove(task, div){
     return function(){
-        tasks = tasks.filter(x => x != task);
-        div.remove();
+        removeTask(task, div)
     }
 }
 //generateTask("task lul");
-generate();
+//generate();

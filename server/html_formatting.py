@@ -22,9 +22,9 @@ def render_formatted_template(*args, outer="outer.html", **kwargs):
     if outer:
         outer = render_template(outer)
         outer = format_html(outer)
-        print(outer)
+        #print(outer)
         outer = outer.replace("__content__", html)
-        print(outer)
+        #print(outer)
         return outer
         
     else:

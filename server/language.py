@@ -26,16 +26,33 @@ def check_upload(language, story):
             os.makedirs(p)
         file.save(os.path.join(p, filename))
         return True
-    return False     
+    return False   
+
+def check_create(lang=None):
+    print(request.method)
+    if request.method == "GET":
+        name = request.args.get("folder")
+        if not name:
+            return
+        p = SOUND_PATH
+        if lang is not None:
+            p = os.path.join(p,lang)
+        p = os.path.join(p, name)
+        if not os.path.exists(p):
+            os.makedirs(p)
 
 def append(app : Flask):
-    @app.route("/language")
+    @app.route("/language", methods = ["POST", "GET"])
     def language():
+        check_create()
+        if not os.path.exists(SOUND_PATH):
+            os.makedirs(SOUND_PATH)
         l = [el for el in os.listdir(SOUND_PATH) if os.path.isdir(os.path.join(SOUND_PATH, el))]
         
         return render_formatted_template("language_nav.html", elements=l, path="")
-    @app.route("/language/<lang>")
+    @app.route("/language/<lang>", methods = ["POST", "GET"])
     def language_lang(lang):
+        check_create(lang)
         lp = os.path.join(SOUND_PATH,lang)
         if not os.path.exists(lp):
             return redirect("/language")
